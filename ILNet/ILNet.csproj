@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{023B16E3-6EA2-42D1-BA25-E3B59C174C93}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ILNet</RootNamespace>
+    <AssemblyName>ILNet</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Event\IEvent.cs" />
+    <Compile Include="ILNetActor\Actor.cs" />
+    <Compile Include="ILNetActor\ActorSynchronizationContext.cs" />
+    <Compile Include="ILNetActor\Agent.cs" />
+    <Compile Include="ILNetActor\SynchroniztionContextExtensions.cs" />
+    <Compile Include="ILNetDB\MogonDBCMD.cs" />
+    <Compile Include="ILNetEvent\EventCallBack.cs" />
+    <Compile Include="ILNetEvent\EventCenter.cs" />
+    <Compile Include="ILNetEvent\EventType.cs" />
+    <Compile Include="ILNetHelper\CheckerInput.cs" />
+    <Compile Include="ILNetHelper\ILTimer.cs" />
+    <Compile Include="ILNetHelper\ISingleton.cs" />
+    <Compile Include="ILNetHelper\JsonHelper.cs" />
+    <Compile Include="ILNetHelper\NetLogger.cs" />
+    <Compile Include="ILNetLua\LuaMgr.cs" />
+    <Compile Include="ILNetMgr\NetLst.cs" />
+    <Compile Include="ILNetMgr\NetServer.cs" />
+    <Compile Include="ILNetMgr\NetSession.cs" />
+    <Compile Include="ILNetMgr\NetTimer.cs" />
+    <Compile Include="ILNetChat\AnalysisMsg.cs" />
+    <Compile Include="ILNetChat\MemoryStream.cs" />
+    <Compile Include="ILNetChat\NetMsg.cs" />
+    <Compile Include="ILNetChat\NetPkg.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
