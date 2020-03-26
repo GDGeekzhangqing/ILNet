@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace ILNet.ILNetHelper
 {
-    class ISingleton
+    public class ISingleton<T> where T : new() 
     {
+        private static  T instance;
+
+        public static T Instance
+        {
+            get
+            {
+                if (instance==null)
+                {
+                    instance = new T();
+                }
+                return instance;
+            }
+        
+        }
+       
+
     }
 }

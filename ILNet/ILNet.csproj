@@ -55,6 +55,7 @@
     <Compile Include="ILNetEvent\EventCallBack.cs" />
     <Compile Include="ILNetEvent\EventCenter.cs" />
     <Compile Include="ILNetEvent\EventType.cs" />
+    <Compile Include="ILNetEvent\TestEvent.cs" />
     <Compile Include="ILNetHelper\CheckerInput.cs" />
     <Compile Include="ILNetHelper\ILTimer.cs" />
     <Compile Include="ILNetHelper\ISingleton.cs" />

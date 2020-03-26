@@ -7,13 +7,8 @@ using ILNet.ILNetEvent;
 
 namespace ILNet.ILNetEvent
 {
-    class EventCallBack
+    class TestEvent:EventCenter<TestEvent,EventType,int>
     {
-
-      public void Test()
-        {
-            TestEvent.Instance()
-        }
-
+           
     }
 }

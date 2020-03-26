@@ -401,7 +401,7 @@ namespace ILNet.ILNetHelper
                 }
             }
 
-            nowTime = GetUTCMillseconds();
+            nowTime = GetUTCMilliseconds();
             ILTimerTask newTask = new ILTimerTask(tid, callback, nowTime + delay, delay, count);
 
             bool isRep = false;

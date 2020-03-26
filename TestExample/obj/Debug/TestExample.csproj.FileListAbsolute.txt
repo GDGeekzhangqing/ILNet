@@ -3,3 +3,4 @@ D:\我的框架集\ILNet\TestExample\bin\Debug\TestExample.exe
 D:\我的框架集\ILNet\TestExample\bin\Debug\TestExample.pdb
 D:\我的框架集\ILNet\TestExample\obj\Debug\TestExample.exe
 D:\我的框架集\ILNet\TestExample\obj\Debug\TestExample.pdb
+D:\我的框架集\ILNet\TestExample\obj\Debug\TestExample.csprojAssemblyReference.cache
