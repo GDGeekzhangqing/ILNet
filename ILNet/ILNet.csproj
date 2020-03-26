@@ -64,9 +64,9 @@
     <Compile Include="ILNetMgr\NetLst.cs" />
     <Compile Include="ILNetMgr\NetServer.cs" />
     <Compile Include="ILNetMgr\NetSession.cs" />
+    <Compile Include="ILNetMgr\NetSocket.cs" />
     <Compile Include="ILNetMgr\NetTimer.cs" />
     <Compile Include="ILNetChat\AnalysisMsg.cs" />
-    <Compile Include="ILNetChat\MemoryStream.cs" />
     <Compile Include="ILNetChat\NetMsg.cs" />
     <Compile Include="ILNetChat\NetPkg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

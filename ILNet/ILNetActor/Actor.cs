@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace ILNet.ILNetActor
 {
-    class Actor
+    public class Actor
     {
+
+
+
+
+
+
+
+
+
     }
 }
