@@ -1,4 +1,5 @@
 ﻿using System;
+using ILNet.ILNetHelper;
 
 namespace ILNet.INetChat
 {

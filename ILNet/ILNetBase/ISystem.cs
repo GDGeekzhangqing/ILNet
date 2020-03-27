@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ILNet.ILNetLua;
+using ILNet.ILNetHelper;
 
-namespace ILNet.ILNetMgr
+namespace ILNet.ILNetBase
 {
-    class NetServer
+    public class ISystem:ISingleton<ISystem>
     {
+        private Action action;
 
      
+
+       
+
     }
 }

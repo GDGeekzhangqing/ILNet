@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ILNet.ILNetLua;
 
-namespace ILNet.ILNetMgr
+
+
+class TestClass
 {
-    class NetServer
+
+    public enum ll
     {
 
-     
     }
 }
+

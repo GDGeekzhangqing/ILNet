@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ILNet.Test
-{
+
 
 
     /// <summary>
@@ -39,4 +38,4 @@ namespace ILNet.Test
         }
 
     }
-}
+

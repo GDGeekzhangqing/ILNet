@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ILNet.ILNetEvent
 {
-    class EventType
+    public class EventType:Attribute
     {
+
+
     }
 }

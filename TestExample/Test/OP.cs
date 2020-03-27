@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ILNet.Event
+
+public class OP
 {
-    public interface IEvent
+    public void Roo()
     {
-     
+
     }
+
 }
+

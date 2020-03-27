@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ILNet.Test
-{
-   public  class Operations
+
+   public  class Operations:OP
     {
         [Operate("ADD")]
         public static int Add(int a, int b) { return a + b; }
@@ -24,4 +23,4 @@ namespace ILNet.Test
         public static int Modulo(int a, int b) { return a % b; }
 
     }
-}
+

@@ -9,8 +9,12 @@ using ILNet.ILNetHelper;
 
 namespace ILNet.ILNetMgr
 {
-    public abstract class NetSession<T> where T : NetMsg
+    public abstract class NetSession<T>where T : NetMsg
     {
+
+        public int sessionID = 0;
+
+
         private Socket skt;
         /// <summary>
         /// 关闭回调的委托
@@ -18,6 +22,7 @@ namespace ILNet.ILNetMgr
         private Action closeCB;
 
         #region Recevie
+
         /// <summary>
         /// 开始接收网络数据
         /// </summary>
@@ -101,6 +106,7 @@ namespace ILNet.ILNetMgr
                 NetLogger.LogMsg("RcvHeadError:" + e.Message, LogLevel.Error);
             }
         }
+
         /// <summary>
         /// 接收包体数据
         /// </summary>
@@ -191,6 +197,17 @@ namespace ILNet.ILNetMgr
         }
 
         /// <summary>
+        /// 发送ACK消息的接口
+        /// </summary>
+        /// <param name="ackPackage"></param>
+        /// <param name="endPoint"></param>
+        public void SendACK()
+        {
+            NetLogger.LogMsg("回复客户端收到消息了!");
+            SendMsg();
+        }
+
+        /// <summary>
         /// 发送网络数据后的回调
         /// </summary>
         /// <param name="ar"></param>
@@ -210,6 +227,9 @@ namespace ILNet.ILNetMgr
         }
 
         #endregion
+
+        #region 释放网络资源
+
         /// <summary>
         /// 释放网络资源
         /// </summary>
@@ -221,6 +241,8 @@ namespace ILNet.ILNetMgr
             }
             skt.Close();
         }
+        #endregion
+
         /// <summary>
         /// 连接网络
         /// </summary>
@@ -243,5 +265,6 @@ namespace ILNet.ILNetMgr
         {
             NetLogger.LogMsg("Session Disconnected.", LogLevel.Info);
         }
+
     }
 }

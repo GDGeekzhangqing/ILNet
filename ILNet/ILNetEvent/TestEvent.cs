@@ -7,8 +7,8 @@ using ILNet.ILNetEvent;
 
 namespace ILNet.ILNetEvent
 {
-    class TestEvent:EventCenter<TestEvent,EventType,int>
+    class TestEvent
     {
-           
+        ve
     }
 }

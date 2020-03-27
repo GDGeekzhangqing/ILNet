@@ -4,9 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ILNet.Test
-{
-    class BaseAttribute
+
+
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    public class BaseAttribute : Attribute
     {
+    private string hello;
+
+    public Type attributeType { get; }
+
+    
+    public BaseAttribute(string hello)
+    {
+        this.hello = hello;
     }
 }
+

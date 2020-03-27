@@ -46,15 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Event\IEvent.cs" />
     <Compile Include="ILNetActor\Actor.cs" />
     <Compile Include="ILNetActor\ActorSynchronizationContext.cs" />
     <Compile Include="ILNetActor\Agent.cs" />
     <Compile Include="ILNetActor\SynchroniztionContextExtensions.cs" />
+    <Compile Include="ILNetBase\BaseAttribute.cs" />
+    <Compile Include="ILNetBase\ISystem.cs" />
     <Compile Include="ILNetDB\MogonDBCMD.cs" />
-    <Compile Include="ILNetEvent\EventCallBack.cs" />
+    <Compile Include="ILNetEvent\CallBack.cs" />
+    <Compile Include="ILNetEvent\EventAttribute.cs" />
     <Compile Include="ILNetEvent\EventCenter.cs" />
     <Compile Include="ILNetEvent\EventType.cs" />
+    <Compile Include="ILNetEvent\IEvent.cs" />
     <Compile Include="ILNetEvent\TestEvent.cs" />
     <Compile Include="ILNetHelper\CheckerInput.cs" />
     <Compile Include="ILNetHelper\ILTimer.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="ILNetLua\LuaMgr.cs" />
     <Compile Include="ILNetMgr\NetLst.cs" />
     <Compile Include="ILNetMgr\NetServer.cs" />
+    <Compile Include="ILNetMgr\NetServerRoot.cs" />
     <Compile Include="ILNetMgr\NetSession.cs" />
     <Compile Include="ILNetMgr\NetSocket.cs" />
     <Compile Include="ILNetMgr\NetTimer.cs" />
@@ -72,6 +76,8 @@
     <Compile Include="ILNetChat\NetPkg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Event\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
