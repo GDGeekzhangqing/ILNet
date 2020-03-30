@@ -36,6 +36,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,38 +49,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ILNetActor\Actor.cs" />
-    <Compile Include="ILNetActor\ActorSynchronizationContext.cs" />
-    <Compile Include="ILNetActor\Agent.cs" />
-    <Compile Include="ILNetActor\SynchroniztionContextExtensions.cs" />
-    <Compile Include="ILNetBase\BaseAttribute.cs" />
-    <Compile Include="ILNetBase\ISystem.cs" />
-    <Compile Include="ILNetDB\MogonDBCMD.cs" />
-    <Compile Include="ILNetEvent\CallBack.cs" />
-    <Compile Include="ILNetEvent\EventAttribute.cs" />
-    <Compile Include="ILNetEvent\EventCenter.cs" />
-    <Compile Include="ILNetEvent\EventType.cs" />
-    <Compile Include="ILNetEvent\IEvent.cs" />
-    <Compile Include="ILNetEvent\TestEvent.cs" />
-    <Compile Include="ILNetHelper\CheckerInput.cs" />
-    <Compile Include="ILNetHelper\ILTimer.cs" />
-    <Compile Include="ILNetHelper\ISingleton.cs" />
-    <Compile Include="ILNetHelper\JsonHelper.cs" />
-    <Compile Include="ILNetHelper\NetLogger.cs" />
-    <Compile Include="ILNetLua\LuaMgr.cs" />
-    <Compile Include="ILNetMgr\NetLst.cs" />
-    <Compile Include="ILNetMgr\NetServer.cs" />
-    <Compile Include="ILNetMgr\NetServerRoot.cs" />
-    <Compile Include="ILNetMgr\NetSession.cs" />
-    <Compile Include="ILNetMgr\NetSocket.cs" />
-    <Compile Include="ILNetMgr\NetTimer.cs" />
-    <Compile Include="ILNetChat\AnalysisMsg.cs" />
-    <Compile Include="ILNetChat\NetMsg.cs" />
-    <Compile Include="ILNetChat\NetPkg.cs" />
+    <Compile Include="Actor\Actor.cs" />
+    <Compile Include="Actor\ActorSynchronizationContext.cs" />
+    <Compile Include="Actor\Agent.cs" />
+    <Compile Include="Actor\SynchroniztionContextExtensions.cs" />
+    <Compile Include="Base\BaseAttribute.cs" />
+    <Compile Include="Base\ISystem.cs" />
+    <Compile Include="DB\MogonDBCMD.cs" />
+    <Compile Include="Event\CallBack.cs" />
+    <Compile Include="Event\EventAttribute.cs" />
+    <Compile Include="Event\EventCenter.cs" />
+    <Compile Include="Event\EventType.cs" />
+    <Compile Include="Event\IEvent.cs" />
+    <Compile Include="Tools\CheckerInput.cs" />
+    <Compile Include="Tools\ILTimer.cs" />
+    <Compile Include="Tools\ISingleton.cs" />
+    <Compile Include="Tools\JsonHelper.cs" />
+    <Compile Include="Tools\NetLogger.cs" />
+    <Compile Include="Lua\LuaMgr.cs" />
+    <Compile Include="Mgr\NetLst.cs" />
+    <Compile Include="Mgr\NetServer.cs" />
+    <Compile Include="Mgr\NetSession.cs" />
+    <Compile Include="Mgr\NetSocket.cs" />
+    <Compile Include="Mgr\NetTimer.cs" />
+    <Compile Include="Chat\AnalysisMsg.cs" />
+    <Compile Include="Chat\NetMsg.cs" />
+    <Compile Include="Chat\NetPkg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Event\" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

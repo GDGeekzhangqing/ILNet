@@ -14,9 +14,9 @@ using System.Threading.Tasks;
     public Type attributeType { get; }
 
     
-    public BaseAttribute(string hello)
+    public BaseAttribute()
     {
-        this.hello = hello;
+        this.attributeType = this.GetType();
     }
 }
 

@@ -1,6 +1,7 @@
-D:\我的框架集\ILNet\ILNet\bin\Debug\ILNet.exe.config
-D:\我的框架集\ILNet\ILNet\bin\Debug\ILNet.exe
+D:\我的框架集\ILNet\ILNet\bin\Debug\ILNet.dll
 D:\我的框架集\ILNet\ILNet\bin\Debug\ILNet.pdb
-D:\我的框架集\ILNet\ILNet\obj\Debug\ILNet.csprojAssemblyReference.cache
-D:\我的框架集\ILNet\ILNet\obj\Debug\ILNet.exe
+D:\我的框架集\ILNet\ILNet\bin\Debug\Newtonsoft.Json.dll
+D:\我的框架集\ILNet\ILNet\bin\Debug\Newtonsoft.Json.xml
+D:\我的框架集\ILNet\ILNet\obj\Debug\ILNet.csproj.CopyComplete
+D:\我的框架集\ILNet\ILNet\obj\Debug\ILNet.dll
 D:\我的框架集\ILNet\ILNet\obj\Debug\ILNet.pdb

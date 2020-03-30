@@ -1,6 +1,12 @@
 D:\我的框架集\ILNet\TestExample\bin\Debug\TestExample.exe.config
 D:\我的框架集\ILNet\TestExample\bin\Debug\TestExample.exe
 D:\我的框架集\ILNet\TestExample\bin\Debug\TestExample.pdb
+D:\我的框架集\ILNet\TestExample\bin\Debug\UnityEngine.dll
+D:\我的框架集\ILNet\TestExample\obj\Debug\TestExample.csproj.CopyComplete
 D:\我的框架集\ILNet\TestExample\obj\Debug\TestExample.exe
 D:\我的框架集\ILNet\TestExample\obj\Debug\TestExample.pdb
+D:\我的框架集\ILNet\TestExample\bin\Debug\Newtonsoft.Json.dll
+D:\我的框架集\ILNet\TestExample\bin\Debug\Newtonsoft.Json.xml
 D:\我的框架集\ILNet\TestExample\obj\Debug\TestExample.csprojAssemblyReference.cache
+D:\我的框架集\ILNet\TestExample\bin\Debug\ILNet.dll
+D:\我的框架集\ILNet\TestExample\bin\Debug\ILNet.pdb
