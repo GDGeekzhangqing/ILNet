@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-[Event(EventIdType.NumbericChange)]
-public class TestEvent:AEvent<long,Player,int>
+[Event(EventType.HelloWorld)]
+public class TestEvent:AEvent<int,NumericType,int>
 {
-    public override void Run(long a, Player b, int c)
+    public override void Run(int a, NumericType b, int c)
     {
         Console.WriteLine("Hellow World");
     }

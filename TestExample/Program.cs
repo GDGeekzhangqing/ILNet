@@ -48,10 +48,14 @@ namespace TestExample
             EventSystem eventSystem = new EventSystem();
             eventSystem.Add(DLLType.Model, typeof(Program).Assembly);
 
+           // eventSystem.RegisterEvent(EventType.HelloWorld);
+
             int final = (int)NumericType.Hp / 10;
             int result = 555;
 
-            eventSystem.Run(EventIdType.NumbericChange,entity.id,(NumericType)final, result);
+            eventSystem.RegisterEvent(EventType.HelloWorld);
+
+            eventSystem.Run(EventType.HelloWorld,entity.id,(NumericType)final, result);
 
             Console.ReadKey();
         }

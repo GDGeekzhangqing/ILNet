@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public static class EventType
+    public  enum EventType
     {
-        public const string Hello = "hello";
+        HelloWorld,
     
     }
    

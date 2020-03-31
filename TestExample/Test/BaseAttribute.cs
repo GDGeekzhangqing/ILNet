@@ -9,7 +9,7 @@ using System.Threading.Tasks;
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class BaseAttribute : Attribute
     {
-    private string hello;
+
 
     public Type attributeType { get; }
 

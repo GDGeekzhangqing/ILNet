@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ILNet.Event
 {
-    public class EventType:Attribute
+    /// <summary>
+    /// 用于事件系统事件枚举
+    /// </summary>
+    public enum EventType
     {
 
 

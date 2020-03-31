@@ -14,19 +14,17 @@ public enum DLLType
 public class EventSystem
 {
 
-    private readonly Dictionary<long, Component> allComponents = new Dictionary<long, Component>();
 
-    public readonly Dictionary<string, List<IEvent>> allEvents = new Dictionary<string, List<IEvent>>();
+
+    public readonly Dictionary<EventType, List<IEvent>> allEvents = new Dictionary<EventType, List<IEvent>>();
     public readonly Dictionary<DLLType, Assembly> assemblies = new Dictionary<DLLType, Assembly>();
     public readonly UnOrderMultiMap<Type, Type> types = new UnOrderMultiMap<Type, Type>();
-
-    private Queue<long> loaders = new Queue<long>();
-    private Queue<long> loaders2 = new Queue<long>();
+    public readonly Dictionary<EventType, EventAttribute> tempEventArributeLst = new Dictionary<EventType, EventAttribute>();
 
 
     #region 特性加反射，ET示例
 
-    public void Add(DLLType dllType,Assembly assembly)
+    public void Add(DLLType dllType, Assembly assembly)
     {
         this.assemblies[dllType] = assembly;
         this.types.Clear();//清空
@@ -44,8 +42,14 @@ public class EventSystem
                 BaseAttribute baseAttribute = (BaseAttribute)objects[0];
                 this.types.Add(baseAttribute.attributeType, type);
             }
+
+            Console.WriteLine("扫描特性成功");
+      
         }
 
+    }
+    public void RegisterEvent(EventType eventType)
+    {
         foreach (Type type in types[typeof(EventAttribute)])
         {
             object[] attrs = type.GetCustomAttributes(typeof(EventAttribute), false);
@@ -57,54 +61,25 @@ public class EventSystem
                 object obj = Activator.CreateInstance(type);
 
                 IEvent ievent = obj as IEvent;
+
                 if (ievent == null)
                 {
-                    Console.WriteLine($"{obj.GetType().Name}没有继承IEvent");                
+                    Console.WriteLine($"{obj.GetType().Name}没有继承IEvent");
                 }
-                this.RegisterEvent(eventAttribute.Type, ievent);
+               
+
+                Console.WriteLine("eventId:" + eventType + ":" + ievent);
+                if (!this.allEvents.ContainsKey(eventType))
+                {
+                    this.allEvents.Add(eventType, new List<IEvent>());
+                }
+                this.allEvents[eventType].Add(ievent);
             }
 
-            this.Load();
-        }
-    }
-    public void RegisterEvent(string eventId, IEvent e)
-    {
-        Console.WriteLine("eventId:" + eventId + ":" + e);
-        if (!this.allEvents.ContainsKey(eventId))
-        {
-            this.allEvents.Add(eventId, new List<IEvent>());
-        }
-        this.allEvents[eventId].Add(e);
+        }    
     }
 
-    public Assembly Get(DLLType dllType)
-    {
-        return this.assemblies[dllType];
-    }
-
-    public List<Type> GetTypes(Type systemAttributeType)
-    {
-        if (!this.types.ContainsKey(systemAttributeType))
-        {
-            return new List<Type>();
-        }
-        return this.types[systemAttributeType];
-    }
-
-    public void Load()
-    {
-        while (this.loaders.Count>0)
-        {
-            long instanceId = this.loaders.Dequeue();
-            Component component;
-            if (true)
-            {
-
-            }
-        }
-    }
-
-    public void Run<A, B, C>(string type, A a, B b, C c)
+    public void Run<A, B, C>(EventType type, A a, B b, C c)
     {
         List<IEvent> iEvents;
         if (!this.allEvents.TryGetValue(type, out iEvents))
@@ -124,32 +99,6 @@ public class EventSystem
         }
     }
 
-    public void Add(Component component)
-    {
-        
-    }
-
-    public void Remove(long instanceId)
-    {
-        this.allComponents.Remove(instanceId);
-    }
-
-    public Component Get(long instanceId)
-    {
-        Component component = null;
-        this.allComponents.TryGetValue(instanceId, out component);
-        return component;
-    }
-
-    public void Deserialize(Component component)
-    {
-        
-    }
-
-    public void Awake(Component component)
-    {
-
-    }
 
 
 

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 	public class EventAttribute : BaseAttribute
 	{
-		public string Type { get; }
+		public EventType Type { get; }
 
-		public EventAttribute(string type)
+		public EventAttribute(EventType type)
 		{
 			this.Type = type;
 		}

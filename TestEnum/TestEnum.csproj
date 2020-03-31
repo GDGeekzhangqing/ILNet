@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{023B16E3-6EA2-42D1-BA25-E3B59C174C93}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>ILNet</RootNamespace>
-    <AssemblyName>ILNet</AssemblyName>
+    <ProjectGuid>{61C5F424-2D9C-4154-8F86-709B55A97DAE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TestEnum</RootNamespace>
+    <AssemblyName>TestEnum</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,13 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,37 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actor\Actor.cs" />
-    <Compile Include="Actor\ActorSynchronizationContext.cs" />
-    <Compile Include="Actor\Agent.cs" />
-    <Compile Include="Actor\SynchroniztionContextExtensions.cs" />
-    <Compile Include="Base\BaseAttribute.cs" />
-    <Compile Include="Base\ISystem.cs" />
-    <Compile Include="Base\UnOrderMultiMap.cs" />
-    <Compile Include="DB\MogonDBCMD.cs" />
-    <Compile Include="Event\CallBack.cs" />
-    <Compile Include="Event\EventAttribute.cs" />
-    <Compile Include="Event\EventCenter.cs" />
-    <Compile Include="Event\EventType.cs" />
-    <Compile Include="Event\IEvent.cs" />
-    <Compile Include="Tools\CheckerInput.cs" />
-    <Compile Include="Tools\ILTimer.cs" />
-    <Compile Include="Tools\ISingleton.cs" />
-    <Compile Include="Tools\JsonHelper.cs" />
-    <Compile Include="Tools\NetLogger.cs" />
-    <Compile Include="Lua\LuaMgr.cs" />
-    <Compile Include="Mgr\NetLst.cs" />
-    <Compile Include="Mgr\NetServer.cs" />
-    <Compile Include="Mgr\NetSession.cs" />
-    <Compile Include="Mgr\NetSocket.cs" />
-    <Compile Include="Mgr\NetTimer.cs" />
-    <Compile Include="Chat\AnalysisMsg.cs" />
-    <Compile Include="Chat\NetMsg.cs" />
-    <Compile Include="Chat\NetPkg.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TEnum.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

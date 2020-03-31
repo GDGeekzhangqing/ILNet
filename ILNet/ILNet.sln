@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILNet", "ILNet.csproj", "{023B16E3-6EA2-42D1-BA25-E3B59C174C93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestExample", "..\TestExample\TestExample.csproj", "{F04115DE-4197-4CE1-9B6E-9134EE46BD01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEvent", "..\TestExample\TestEvent.csproj", "{F04115DE-4197-4CE1-9B6E-9134EE46BD01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEnum", "..\TestEnum\TestEnum.csproj", "{61C5F424-2D9C-4154-8F86-709B55A97DAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F04115DE-4197-4CE1-9B6E-9134EE46BD01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F04115DE-4197-4CE1-9B6E-9134EE46BD01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F04115DE-4197-4CE1-9B6E-9134EE46BD01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C5F424-2D9C-4154-8F86-709B55A97DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C5F424-2D9C-4154-8F86-709B55A97DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C5F424-2D9C-4154-8F86-709B55A97DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C5F424-2D9C-4154-8F86-709B55A97DAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

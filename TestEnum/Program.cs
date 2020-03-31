@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-public class OP
+namespace TestEnum
 {
-    public void Roo()
+    class Program
     {
-
+        static void Main(string[] args)
+        {
+        }
     }
-
 }
-

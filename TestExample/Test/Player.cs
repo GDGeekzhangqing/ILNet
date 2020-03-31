@@ -8,6 +8,5 @@ using System.Threading.Tasks;
 public class Player
 {
     public int ID;
-
 }
 

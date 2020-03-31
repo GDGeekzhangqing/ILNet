@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 namespace ILNet.Base
 {
-    [AttributeUsage(AttributeTargets.Class,AllowMultiple =true)]
+
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class BaseAttribute : Attribute
     {
+        private string hello;
+
         public Type attributeType { get; }
+
 
         public BaseAttribute()
         {
             this.attributeType = this.GetType();
         }
-
     }
 }
+

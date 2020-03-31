@@ -7,15 +7,15 @@ using ILNet.Base;
 
 namespace ILNet.Event
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class EventAttribute : BaseAttribute
-    {
-        public string Type { get; }
+	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+	public class EventAttribute : BaseAttribute
+	{
+		public EventType Type { get; }
 
-        public EventAttribute(string type)
-        {
-            Type = type;
-        }
+		public EventAttribute(EventType type)
+		{
+			this.Type = type;
+		}
+	}
 
-    }
 }
