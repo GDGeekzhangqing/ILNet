@@ -21,6 +21,9 @@ public enum DLLType
 
 namespace ILNet.Event
 {
+    /// <summary>
+    /// 基于特性的事件系统使用的是观察者模式，这种模式的缺点就是要创建大量的类
+    /// </summary>
     public class EventCenter : ISingleton<EventCenter>
     {
         /// <summary>

@@ -45,6 +45,9 @@ namespace TestExample
             Entity entity = new Entity();
             entity.id = 6699;
 
+            Player player = new Player();
+            player.ID = 55;
+
             EventSystem eventSystem = new EventSystem();
             eventSystem.Add(DLLType.Model, typeof(Program).Assembly);
 
@@ -55,7 +58,7 @@ namespace TestExample
 
             eventSystem.RegisterEvent(EventType.HelloWorld);
 
-            eventSystem.Run(EventType.HelloWorld,entity.id,(NumericType)final, result);
+            eventSystem.Run(EventType.HelloWorld,player,(NumericType)final, result);
 
             Console.ReadKey();
         }
