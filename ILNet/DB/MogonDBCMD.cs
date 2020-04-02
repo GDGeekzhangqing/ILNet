@@ -1,4 +1,8 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +13,7 @@ namespace ILNet.DB
     public class MogonDBCMD
     {
 
-        public void SetMongoDBConnect()
-        {
-
-        }
+      
 
     }
 }

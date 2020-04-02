@@ -39,7 +39,7 @@ namespace ILNet.Event
         public readonly Dictionary<DLLType, Assembly> assemblies = new Dictionary<DLLType, Assembly>();
         public readonly UnOrderMultiMap<Type, Type> types = new UnOrderMultiMap<Type, Type>();
 
-        public void Add(DLLType dllType, Assembly assembly)
+        public  void Add(DLLType dllType, Assembly assembly)
         {
             this.assemblies[dllType] = assembly;
             this.types.Clear();//清空
@@ -67,7 +67,7 @@ namespace ILNet.Event
         /// 基于特性的注册事件的方法
         /// </summary>
         /// <param name="eventType"></param>
-        public void RegisterEvent(EventType eventType)
+        public  void RegisterEvent(EventType eventType)
         {
             foreach (Type type in types[typeof(EventAttribute)])
             {
