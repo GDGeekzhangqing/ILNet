@@ -10,7 +10,7 @@ using ILNet.Tools;
 
 namespace ILNet.Mgr
 {
-    public class NetSocket<T, K> where T:NetSession<K>,new() where K:NetMsg
+    public class NetSocket<T, K> where T : NetSession<K>, new() where K : NetMsg
     {
         private Socket skt = null;
         public T session = null;
@@ -24,7 +24,7 @@ namespace ILNet.Mgr
         }
 
         #region Server
-        public void StartAsServer(string ip,int port)
+        public void StartAsServer(string ip, int port)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace ILNet.Mgr
             }
             catch (Exception e)
             {
-               NetLogger.LogMsg(e.Message, LogLevel.Error);
+                NetLogger.LogMsg(e.Message, LogLevel.Error);
             }
         }
 
@@ -65,11 +65,12 @@ namespace ILNet.Mgr
         #endregion
 
         #region Client
-        public void StartAsClient(string ip,int port)
+        public void StartAsClient(string ip, int port)
         {
             try
             {
                 skt.BeginConnect(new IPEndPoint(IPAddress.Parse(ip), port), new AsyncCallback(ServerConnectCB), skt);
+                NetLogger.LogMsg("\nClient Start Success!\nConnecting To Server......", LogLevel.Info);
             }
             catch (Exception e)
             {
@@ -95,13 +96,18 @@ namespace ILNet.Mgr
 
         public void Close()
         {
-            if (skt!=null)
+            if (skt != null)
             {
                 skt.Close();
             }
         }
 
-        public void SetLog(bool log=true,Action<string,int> logCB = null)
+        public List<T> GetSesstionLst()
+        {
+            return sessionLst;
+        }
+
+        public void SetLog(bool log = true, Action<string, int> logCB = null)
         {
             if (log == false)
             {
@@ -112,7 +118,5 @@ namespace ILNet.Mgr
                 NetLogger.logCB = logCB;
             }
         }
-
-
     }
 }

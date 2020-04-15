@@ -9,13 +9,10 @@ using ILNet.Tools;
 
 namespace ILNet.Mgr
 {
-    public abstract class NetSession<T>where T : NetMsg
+    public abstract class NetSession<T> where T : NetMsg
     {
-
-        public int sessionID = 0;
-
-
         private Socket skt;
+
         /// <summary>
         /// 关闭回调的委托
         /// </summary>
@@ -28,7 +25,7 @@ namespace ILNet.Mgr
         /// </summary>
         /// <param name="skt"></param>
         /// <param name="closeCB"></param>
-        public void StartRcvData(Socket skt,Action closeCB)
+        public void StartRcvData(Socket skt, Action closeCB)
         {
             try
             {
@@ -45,25 +42,25 @@ namespace ILNet.Mgr
                     pack.headLen,
                     SocketFlags.None,
                     new AsyncCallback(RcvHeadData),
-                    pack );
-          
+                    pack);
+                Console.WriteLine("接收数据："+skt.ToString());
             }
             catch (Exception e)
             {
                 NetLogger.LogMsg("StartRcvData:" + e.Message, LogLevel.Error);
             }
         }
-      
+
         /// <summary>
         /// 接收包头数据
         /// </summary>
         /// <param name="ar"></param>
-       private void RcvHeadData(IAsyncResult ar)
+        private void RcvHeadData(IAsyncResult ar)
         {
             try
             {
                 NetPkg pack = (NetPkg)ar.AsyncState;
-                if (skt.Available==0)
+                if (skt.Available == 0)
                 {
                     OnDisConnected();
                     Clear();
@@ -71,10 +68,10 @@ namespace ILNet.Mgr
                 }
 
                 int len = skt.EndReceive(ar);
-                if (len>0)
+                if (len > 0)
                 {
                     pack.headIndex += len;
-                    if (pack.headIndex<pack.headLen)
+                    if (pack.headIndex < pack.headLen)
                     {
                         skt.BeginReceive(
                             pack.headBuff,
@@ -117,10 +114,10 @@ namespace ILNet.Mgr
             {
                 NetPkg pack = (NetPkg)ar.AsyncState;
                 int len = skt.EndReceive(ar);
-                if (len>0)
+                if (len > 0)
                 {
                     pack.bodyIndex += len;
-                    if (pack.bodyIndex<pack.bodyLen)
+                    if (pack.bodyIndex < pack.bodyLen)
                     {
                         skt.BeginReceive(pack.bodyBuff,
                             pack.bodyIndex,
@@ -204,7 +201,7 @@ namespace ILNet.Mgr
         public void SendACK()
         {
             NetLogger.LogMsg("回复客户端收到消息了!");
-           // SendMsg();
+            // SendMsg();
         }
 
         /// <summary>
@@ -222,7 +219,7 @@ namespace ILNet.Mgr
             }
             catch (Exception e)
             {
-               NetLogger.LogMsg("SndMsgError:" + e.Message, LogLevel.Error);
+                NetLogger.LogMsg("SndMsgError:" + e.Message, LogLevel.Error);
             }
         }
 
@@ -235,7 +232,7 @@ namespace ILNet.Mgr
         /// </summary>
         private void Clear()
         {
-            if (closeCB!=null)
+            if (closeCB != null)
             {
                 closeCB();
             }

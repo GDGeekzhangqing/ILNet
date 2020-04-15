@@ -610,7 +610,7 @@ namespace ILNet.Tools
         /// 获取当前月份哪一天
         /// </summary>
         /// <returns></returns>
-        public int GetDay()
+        public  int GetDay()
         {
             return GetLocalDateTime().Day;
         }
@@ -618,7 +618,7 @@ namespace ILNet.Tools
         /// 获取当前星期几
         /// </summary>
         /// <returns></returns>
-        public int GetWeek()
+        public  int GetWeek()
         {
             return (int)GetLocalDateTime().DayOfWeek;
         }
@@ -626,7 +626,7 @@ namespace ILNet.Tools
         /// 获取当地时间
         /// </summary>
         /// <returns></returns>
-        public DateTime GetLocalDateTime()
+        public  DateTime GetLocalDateTime()
         {
             DateTime dt = TimeZone.CurrentTimeZone.ToLocalTime(startDateTime.AddMilliseconds(nowTime));
             return dt;

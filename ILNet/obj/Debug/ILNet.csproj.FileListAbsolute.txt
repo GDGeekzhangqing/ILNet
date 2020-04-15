@@ -22,4 +22,11 @@ D:\我的框架集\ILNet\ILNet\bin\Debug\System.Buffers.xml
 D:\我的框架集\ILNet\ILNet\obj\Debug\ILNet.csproj.CopyComplete
 D:\我的框架集\ILNet\ILNet\obj\Debug\ILNet.dll
 D:\我的框架集\ILNet\ILNet\obj\Debug\ILNet.pdb
+D:\我的框架集\ILNet\ILNet\obj\Debug\ILNet.csproj.CoreCompileInputs.cache
+D:\UnityProject\Gotcha\DLL\mongocrypt.dll
+D:\UnityProject\Gotcha\DLL\ILNet.dll
+D:\UnityProject\Gotcha\DLL\ILNet.pdb
+D:\UnityProject\Gotcha\Client\Assets\Plugins\DLL\mongocrypt.dll
+D:\UnityProject\Gotcha\Client\Assets\Plugins\DLL\ILNet.dll
+D:\UnityProject\Gotcha\Client\Assets\Plugins\DLL\ILNet.pdb
 D:\我的框架集\ILNet\ILNet\obj\Debug\ILNet.csprojAssemblyReference.cache
