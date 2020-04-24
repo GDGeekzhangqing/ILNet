@@ -14,7 +14,7 @@ namespace ILNet.Base
         public virtual void Init()
         {
 
-            NetLogger.LogMsg($"初始化{this.GetType().Name}成功");
+            NetLogger.LogMsg($"初始化{this.GetType().Name}成功...");
         }
 
        

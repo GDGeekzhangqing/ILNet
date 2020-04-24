@@ -24,7 +24,7 @@ namespace ILNet.Tools
             }
             catch (Exception e)
             {
-                NetLogger.LogMsg("无法应用这个方法");
+                NetLogger.LogMsg("无法应用这个方法:"+e);
             }
 
             return json;

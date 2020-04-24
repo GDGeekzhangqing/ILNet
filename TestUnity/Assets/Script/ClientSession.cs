@@ -12,20 +12,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using ILNet.Mgr;
 using ILNet.Tools;
-using Proltocol;
+using Proto;
 
-public class ClientSession : NetSession<GameMsg>
+public class ClientSession : ISession<GameMsg>
 {
-    protected override void OnConnected()
-    {
-    }
+
+   
 
     protected override void OnReciveMsg(GameMsg msg)
     {
-        NetLogger.LogMsg("Server Response:" + msg.text);
+        NetSvc.Instance.AddNetPkg(msg);
+        NetLogger.LogMsg($"服务端回应:{msg.chatMsg}");
     }
 
     protected override void OnDisConnected()
     {
+        base.OnDisConnected();
+        isOffLine = true;
+        NetLogger.LogMsg("下线");
+
     }
 }

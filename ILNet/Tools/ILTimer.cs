@@ -621,7 +621,7 @@ namespace ILNet.Tools
         public  int GetWeek()
         {
             return (int)GetLocalDateTime().DayOfWeek;
-        }
+        } 
         /// <summary>
         /// 获取当地时间
         /// </summary>

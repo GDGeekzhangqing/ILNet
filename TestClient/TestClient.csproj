@@ -33,14 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GameProto">
-      <HintPath>..\..\..\UnityProject\Gotcha\DLL\GameProto.dll</HintPath>
-    </Reference>
     <Reference Include="ILNet">
-      <HintPath>..\..\..\UnityProject\Gotcha\DLL\ILNet.dll</HintPath>
+      <HintPath>..\DLL\ILNet.dll</HintPath>
     </Reference>
-    <Reference Include="Proltocol">
-      <HintPath>..\Proltocol\bin\Debug\Proltocol.dll</HintPath>
+    <Reference Include="Proto">
+      <HintPath>..\DLL\Proto.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,11 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientSession.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="NetSvc.cs" />
+    <Compile Include="ClientApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

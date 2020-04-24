@@ -14,7 +14,7 @@ namespace TestEnum
     {
         static void Main(string[] args)
         {
-            Player player = new Player();
+           /* Player player = new Player();
             player.ID = 666;
             player.Name = "Hello World";
             Weapon weaponA = new Weapon { des = "这是第一个数组" };
@@ -32,7 +32,7 @@ namespace TestEnum
             var pd = JsonConvert.DeserializeObject<Player>(json);
             Console.WriteLine("反序列化为对象："+pd);
 
-            Console.ReadKey();
+            Console.ReadKey();*/
 
         }
     }

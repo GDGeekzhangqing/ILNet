@@ -34,10 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ILNet">
-      <HintPath>..\..\..\UnityProject\Gotcha\DLL\ILNet.dll</HintPath>
+      <HintPath>..\DLL\ILNet.dll</HintPath>
     </Reference>
-    <Reference Include="Proltocol">
-      <HintPath>..\Proltocol\bin\Debug\Proltocol.dll</HintPath>
+    <Reference Include="Proto">
+      <HintPath>..\DLL\Proto.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,8 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CacheSvc.cs" />
+    <Compile Include="NetSvc.cs" />
+    <Compile Include="ServerApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerRoot.cs" />
     <Compile Include="ServerSession.cs" />
   </ItemGroup>
   <ItemGroup>

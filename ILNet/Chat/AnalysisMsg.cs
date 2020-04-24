@@ -2,6 +2,7 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
+using ILNet.Chat;
 
 namespace ILNet.Chat
 {
@@ -32,7 +33,6 @@ namespace ILNet.Chat
                 return ms.ToArray();
             }
         }
-
 
         public static T DeSerialize<T>(byte[] bs) where T : NetMsg
         {

@@ -14,16 +14,19 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\UnityProject\Gotcha\DLL\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -95,12 +99,19 @@
     <Compile Include="Base\BaseAttribute.cs" />
     <Compile Include="Base\ISystem.cs" />
     <Compile Include="Base\UnOrderMultiMap.cs" />
+    <Compile Include="Chat\NetAckMsg.cs" />
     <Compile Include="DB\MogonDBCMD.cs" />
     <Compile Include="Event\CallBack.cs" />
     <Compile Include="Event\EventAttribute.cs" />
     <Compile Include="Event\EventCenter.cs" />
     <Compile Include="Event\EventType.cs" />
     <Compile Include="Event\IEvent.cs" />
+    <Compile Include="Mgr\AckMgr.cs" />
+    <Compile Include="Mgr\ClientInfo.cs" />
+    <Compile Include="Mgr\IClientSession.cs" />
+    <Compile Include="Mgr\IServerSession.cs" />
+    <Compile Include="Mgr\ISession.cs" />
+    <Compile Include="Mgr\ISocket.cs" />
     <Compile Include="Tools\CheckerInput.cs" />
     <Compile Include="Tools\ILTimer.cs" />
     <Compile Include="Tools\ISingleton.cs" />
@@ -108,7 +119,6 @@
     <Compile Include="Tools\NetLogger.cs" />
     <Compile Include="Lua\LuaMgr.cs" />
     <Compile Include="Mgr\NetLst.cs" />
-    <Compile Include="Mgr\NetServer.cs" />
     <Compile Include="Mgr\NetSession.cs" />
     <Compile Include="Mgr\NetSocket.cs" />
     <Compile Include="Mgr\NetTimer.cs" />
@@ -120,6 +130,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

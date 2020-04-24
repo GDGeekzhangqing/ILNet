@@ -5,24 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using ILNet.Mgr;
 using ILNet.Tools;
-using Proltocol;
+using Proto;
 
 
-public class ClientSession :NetSession<GameMsg>
+public class ClientSession :ISession<GameMsg>
 {
+ 
     protected override void OnConnected()
     {
-        NetLogger.LogMsg("Connect Server Succ.");
+        NetLogger.LogMsg("连接服务器成功.");
     }
 
     protected override void OnReciveMsg(GameMsg msg)
     {
-       NetLogger.LogMsg("Server Response:" + msg.text);
+       NetLogger.LogMsg("服务端回复消息:" + msg.chatMsg);
     }
 
     protected override void OnDisConnected()
     {
-        NetLogger.LogMsg("Server Shutdown.");
+        base.OnDisConnected();
+        NetLogger.LogMsg("本机下线.");
     }
 }
 
