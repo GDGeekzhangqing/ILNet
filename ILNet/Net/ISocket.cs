@@ -6,44 +6,34 @@ using System.Text;
 using System.Threading.Tasks;
 using ILNet.Tools;
 
-namespace ILNet.Mgr
+namespace ILNet.Net
 {
     public abstract class ISocket
     {
-        public Socket skt ;
+
+        public Socket skt;
 
         public ISocket()
         {
-            //指定Socket属性
+            // 指定地址类型 套接字类型 协议
             skt = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }
 
         /// <summary>
-        /// 开始创建Socket实例
+        /// 创建Socket连接实例
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
         public abstract void StartCreate(string ip, int port);
 
         /// <summary>
-        /// 成功创建Socket时的回调
+        /// 建立的回调
         /// </summary>
         /// <param name="ar"></param>
         public abstract void ConnectAsync(IAsyncResult ar);
 
         /// <summary>
-        /// 关闭Socket
-        /// </summary>
-        public void Close()
-        {
-            if (skt != null)
-            {
-                skt.Close();
-            }
-        }
-
-        /// <summary>
-        /// 打印日志
+        /// 日志输出
         /// </summary>
         /// <param name="log"></param>
         /// <param name="logCB"></param>
@@ -58,6 +48,5 @@ namespace ILNet.Mgr
                 NetLogger.logCB = logCB;
             }
         }
-
     }
 }

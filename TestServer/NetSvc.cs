@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ILNet.Chat;
-using ILNet.Mgr;
+using ILNet.Net;
 using ILNet.Tools;
 using Proto;
 public class MsgPack
@@ -41,7 +40,7 @@ public class NetSvc : IServerSession<ServerSession, GameMsg>
     private Queue<MsgPack> msgPackQue = new Queue<MsgPack>();
 
     IServerSession<ServerSession, GameMsg> server;
-    public AckMgr<ServerSession, NetAckMsg> ackMgr;
+    public AckMgr<ServerSession, AckMsg> ackMgr;
 
 
     public void Init()
@@ -79,14 +78,14 @@ public class NetSvc : IServerSession<ServerSession, GameMsg>
     {
         switch ((CMD)pack.msg.cmd)
         {
-            case CMD.HelloWorld:
+            case CMD.HeartBeat:
                 //更新心跳包
                 NetLogger.LogMsg("更新心跳包");
                 ackMgr.UpdateOneHeat(pack.session);
                 pack.session.SendMsg(pack.msg);
                 break;
-            case CMD.Chat:
-                NetLogger.LogMsg("聊天信息："+pack.msg.chatMsg);
+            case CMD.ReqLogin:
+                NetLogger.LogMsg("聊天信息："+pack.msg.Chatdata.chat);
                 break;
         }
     }
@@ -109,7 +108,7 @@ public class NetSvc : IServerSession<ServerSession, GameMsg>
 
     public bool IsUserOnLine(string name)
     {
-        return sessionLst.Select(v => v.PlayerName).ToList().Contains(name);
+        return SessionList.Select(v => v.PlayerName).ToList().Contains(name);
     }
 
 
@@ -126,7 +125,7 @@ public class NetSvc : IServerSession<ServerSession, GameMsg>
         base.StartCreate(ip, port);
         NetLogger.LogMsg("开始创建会话");
 
-        ackMgr = new AckMgr<ServerSession, NetAckMsg>().InitTimerEvent(null, lost =>
+        ackMgr = new AckMgr<ServerSession, AckMsg>().InitTimerEvent(null, lost =>
           {
               if (lost != null && lost.skt != null && lost.skt.Connected)
               {

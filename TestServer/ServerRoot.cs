@@ -12,7 +12,7 @@ public class ServerRoot:ISingleton<ServerRoot>
 
     public void Init()
     {
-        CacheSvc.Instance.Init();
+      
         NetSvc.Instance.Init();
 
         NetLogger.LogMsg("ServerRoot Init...");

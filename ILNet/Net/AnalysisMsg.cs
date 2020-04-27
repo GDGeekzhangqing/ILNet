@@ -2,9 +2,9 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
-using ILNet.Chat;
 
-namespace ILNet.Chat
+
+namespace ILNet.Net
 {
     public class AnalysisMsg
     {

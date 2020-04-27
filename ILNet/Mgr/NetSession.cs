@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ILNet.Chat;
+using ILNet.Net;
 using ILNet.Tools;
 
 namespace ILNet.Mgr
@@ -333,7 +333,7 @@ namespace ILNet.Mgr
         /// 客户端离线提示
         /// </summary>
         /// <param name="clientInfo"></param>
-        public virtual  void ClientOfflineEvent(NetAckMsg clientInfo)
+        public virtual  void ClientOfflineEvent(AckMsg clientInfo)
         {
             NetLogger.LogMsg($"客户端{sessionID}离线，离线时间：\t");
         }
@@ -342,7 +342,7 @@ namespace ILNet.Mgr
         /// 客户端上线提示
         /// </summary>
         /// <param name="clientInfo"></param>
-        public virtual void ClientOnlineEvent(NetAckMsg clientInfo)
+        public virtual void ClientOnlineEvent(AckMsg clientInfo)
         {
             NetLogger.LogMsg($"客户端{sessionID}上线，上线时间：\t{clientInfo.lastHeartTime}");
         }

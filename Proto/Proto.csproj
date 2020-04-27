@@ -31,8 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ILNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ILNet">
       <HintPath>..\ILNet\bin\Debug\ILNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />

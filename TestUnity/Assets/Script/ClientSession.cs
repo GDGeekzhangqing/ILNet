@@ -10,26 +10,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using ILNet.Mgr;
+using ILNet.Net;
 using ILNet.Tools;
 using Proto;
 
 public class ClientSession : ISession<GameMsg>
 {
 
-   
-
-    protected override void OnReciveMsg(GameMsg msg)
-    {
-        NetSvc.Instance.AddNetPkg(msg);
-        NetLogger.LogMsg($"服务端回应:{msg.chatMsg}");
-    }
-
     protected override void OnDisConnected()
     {
         base.OnDisConnected();
-        isOffLine = true;
-        NetLogger.LogMsg("下线");
 
+        NetLogger.LogMsg("下线");
     }
+
+
 }

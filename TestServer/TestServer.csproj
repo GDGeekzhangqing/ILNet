@@ -33,10 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ILNet">
+    <Reference Include="ILNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\ILNet.dll</HintPath>
     </Reference>
-    <Reference Include="Proto">
+    <Reference Include="Proto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\Proto.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -49,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheSvc.cs" />
     <Compile Include="NetSvc.cs" />
     <Compile Include="ServerApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

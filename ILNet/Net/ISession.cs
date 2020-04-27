@@ -4,82 +4,63 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using ILNet.Chat;
 using ILNet.Tools;
 
-namespace ILNet.Mgr
+
+namespace ILNet.Net
 {
     public abstract class ISession<T> where T : NetMsg
     {
-
-        /// <summary>
-        /// 对外公布的socket实例
-        /// </summary>
         public Socket skt;
-
-        /// <summary>
-        /// 对外公布的会话索引
-        /// </summary>
         public int sessionID = 0;
 
         /// <summary>
-        /// 当前客户端是否离线
+        /// 连接成功时的回调
         /// </summary>
-        protected Boolean isOffLine;
+        public event Action OnStartConnectEvent;
 
         /// <summary>
-        /// 首次开启连接的事件
-        /// </summary>
-        public event Action OnConnectEvent;
-
-        /// <summary>
-        /// 接收到数据时的委托事件
+        /// 接收数据时的回调
         /// </summary>
         public event Action<T> OnReciveMsgEvent;
 
         /// <summary>
-        /// 关闭会话时的委托事件
+        /// 关闭连接时的回调
         /// </summary>
-        public event Action OnDisConnectEvent;
-
+        public event Action OnDisReciveEvent;
 
         public NetPkg pack = new NetPkg();
 
-
-        #region Recevie
-
         /// <summary>
-        /// 开始接收网络数据
+        /// 开始数据接收
         /// </summary>
-        /// <param name="skt"></param>
-        /// <param name="closeCB"></param>
-        public void StartRcvData(Socket skt, Action closeCB = null)
+        /// <param name="socket"></param>
+        /// <param name="close"></param>
+        public void StartReciveData(Socket socket, Action close = null)
         {
             try
             {
-                this.skt = skt;
-                //添加监听
-                this.OnDisConnectEvent += closeCB;
+                // 初始化赋值
+                skt = socket;
+                OnDisReciveEvent += close;
 
-                //连接成功的回调
-                OnConnected();
-                OnConnectEvent?.Invoke();
-
-               // pack.headBuff = new byte[4];  
-                //开始异步接收数据
+                //回调开启连接事件
+                OnStartConnected();
+                OnStartConnectEvent?.Invoke();
+                //首先是接收头4个字节确认包长
+                //4可能太小了
+                pack.headBuff = new byte[4];
                 skt.BeginReceive(
                     pack.headBuff,
                     0,
-                    pack.headLen,
+                    4,
                     SocketFlags.None,
-                    RcvHeadData,
+                    ReciveHeadData,
                     null);
-
-                // NetLogger.LogMsg("接收数据：" + skt.ToString());
             }
             catch (Exception e)
             {
-                NetLogger.LogMsg($"开始接收数据错误:{e.Message}", LogLevel.Error);
+                NetLogger.LogMsg($"开始接收数据错误：{e}", LogLevel.Error);
             }
         }
 
@@ -87,42 +68,42 @@ namespace ILNet.Mgr
         /// 接收包头数据
         /// </summary>
         /// <param name="ar"></param>
-        private void RcvHeadData(IAsyncResult ar)
+        protected void ReciveHeadData(IAsyncResult ar)
         {
             try
             {
-                //避免断开连接时，异步回调调用EndReceive会报错
+                //接收数据长度等于0意味着断开连接 
+                //在断开的时候 异步会回调一次 直接调用EndReceive 会报错
                 if (skt == null)
                     return;
-
-                // NetPkg pack = (NetPkg)ar.AsyncState;
                 if (skt.Available == 0)
                 {
-                    //网络关闭后执行的回调         
                     Clear();
                     return;
                 }
-                //NetLogger.LogMsg("开始结束异步读取");
+
                 int len = skt.EndReceive(ar);
                 if (len > 0)
                 {
                     pack.headIndex += len;
-                    //如果是小于4的就是凑不成一个包头，就是要分包继续接收
+                    //这里如果是小于4的就是凑不成 就是分包了 要继续接收
                     if (pack.headIndex < pack.headLen)
                     {
-                        //接收数据
+                        //                                                                           
                         skt.BeginReceive(
                             pack.headBuff,
                             pack.headIndex,
                             pack.headLen - pack.headIndex,
                             SocketFlags.None,
-                            RcvHeadData,
+                            ReciveHeadData,
                             null);
                     }
+                    //这里已经取出长度了
                     else
                     {
-                        //设置byte[]的长度
+                        //赋值从那四个字节获取的byte[]的长度
                         pack.InitBodyBuff();
+                        //进行真正的数据接收处理
                         skt.BeginReceive(
                             pack.bodyBuff,
                             0,
@@ -139,7 +120,7 @@ namespace ILNet.Mgr
             }
             catch (Exception e)
             {
-                NetLogger.LogMsg($"接收包头数据错误:{ e.Message}", LogLevel.Error);
+                NetLogger.LogMsg($"接收：{e}", LogLevel.Error);
             }
         }
 
@@ -147,39 +128,46 @@ namespace ILNet.Mgr
         /// 接收包体数据
         /// </summary>
         /// <param name="ar"></param>
-        private void RcvBodyData(IAsyncResult ar)
+        protected void RcvBodyData(IAsyncResult ar)
         {
             try
             {
+                //结束接收获取长度
                 int len = skt.EndReceive(ar);
+
                 if (len > 0)
                 {
                     pack.bodyIndex += len;
+
+                    //这里是如果接收到的包长和原本获取到的长度小，就是分包了 需要再次进行接收剩下的
                     if (pack.bodyIndex < pack.bodyLen)
                     {
+
                         skt.BeginReceive(
                             pack.bodyBuff,
                             pack.bodyIndex,
                             pack.headLen - pack.bodyIndex,
                             SocketFlags.None,
                             RcvBodyData,
-                            null );
+                            null);
                     }
+                    //已经接完一组数据了
                     else
                     {
-                        //接收完一组数据后进行回调
+                        //这里就可以进行回调函数了
                         T msg = AnalysisMsg.DeSerialize<T>(pack.bodyBuff);
                         OnReciveMsg(msg);
                         OnReciveMsgEvent?.Invoke(msg);
 
-                        //循环接收
+                        //开始新一轮的从上往下接收了
                         pack.ResetData();
+                        pack.headBuff = new byte[4];
                         skt.BeginReceive(
                             pack.headBuff,
                             0,
-                            pack.headLen,
+                            4,
                             SocketFlags.None,
-                            RcvHeadData,
+                            ReciveHeadData,
                             null);
                     }
                 }
@@ -187,16 +175,16 @@ namespace ILNet.Mgr
                 {
                     Clear();
                 }
+
             }
             catch (Exception e)
             {
-                NetLogger.LogMsg($"接收包体数据错误:{e.Message}" , LogLevel.Error);
+                NetLogger.LogMsg($"ReciveDataError：{e}", LogLevel.Error);
             }
+
         }
-
-        #endregion
-
         #region Send
+
         /// <summary>
         /// 发送网络数据
         /// </summary>
@@ -213,12 +201,14 @@ namespace ILNet.Mgr
         /// <param name="data"></param>
         public void SendMsg(byte[] data)
         {
-            //创建流，准备异步写入发送
+            //创建流 准备异步写入发送
             NetworkStream ns = null;
+
             try
             {
                 //指定写入的socket
                 ns = new NetworkStream(skt);
+
                 //判断是否可以支持写入消息
                 if (ns.CanWrite)
                 {
@@ -227,63 +217,55 @@ namespace ILNet.Mgr
                         data,
                         0,
                         data.Length,
-                        SendCB,
-                        ns);
+                        SendDataAsync,
+                         ns);
                 }
             }
             catch (Exception e)
             {
-                NetLogger.LogMsg($"发送数据错误:{ e.Message}", LogLevel.Error);
+                NetLogger.LogMsg($"SendDataError：{e}", LogLevel.Error);
             }
+
         }
 
-
         /// <summary>
-        /// 发送网络数据后的回调
+        /// 这里是异步写入回调
         /// </summary>
         /// <param name="ar"></param>
-        private void SendCB(IAsyncResult ar)
+        protected void SendDataAsync(IAsyncResult ar)
         {
             //拿到写入时候的流
-            NetworkStream ns = (NetworkStream)ar.AsyncState;
+            NetworkStream network = (NetworkStream)ar.AsyncState;
             try
             {
                 //结束写入 就是发送了  然后进行关闭流
-                ns.EndWrite(ar);
-                ns.Flush();
-                ns.Close();
+                network.EndWrite(ar);
+                network.Flush();
+                network.Close();
+
             }
             catch (Exception e)
             {
-                NetLogger.LogMsg($"异步写入数据出错:{e.Message}", LogLevel.Error);
+                NetLogger.LogMsg($"SendDataAsyncError：{e}", LogLevel.Error);
             }
         }
-
         #endregion
 
-        #region Clear
-
-
         /// <summary>
-        /// 释放网络资源
+        /// 网络关闭
         /// </summary>
         public void Clear()
         {
             OnDisConnected();
-            OnDisConnectEvent?.Invoke();
+            OnDisReciveEvent?.Invoke();
             skt.Close();
             skt = null;
-            NetLogger.LogMsg("释放网络资源...");
         }
 
-
-        #endregion
-
-
         /// <summary>
-        /// 连接网络
+        /// 连接成功
         /// </summary>
-        protected virtual void OnConnected()
+        protected virtual void OnStartConnected()
         {
             NetLogger.LogMsg($"客户端{sessionID}上线，上线时间：", LogLevel.Info);
         }
@@ -291,11 +273,11 @@ namespace ILNet.Mgr
         /// <summary>
         /// 接收网络消息
         /// </summary>
-        /// <param name="msg"></param>
-        protected virtual void OnReciveMsg(T msg)
+        /// <param name="data"></param>
+        protected virtual void OnReciveMsg(T data)
         {
             //更新心跳包    
-            NetLogger.LogMsg($"接收网络消息：{msg}", LogLevel.Info);
+            NetLogger.LogMsg("接收网络消息.", LogLevel.Info);
         }
 
         /// <summary>
@@ -303,7 +285,7 @@ namespace ILNet.Mgr
         /// </summary>
         protected virtual void OnDisConnected()
         {
-            NetLogger.LogMsg($"客户端{sessionID}离线，离线时间：{DateTime.UtcNow}\t", LogLevel.Info);
+            NetLogger.LogMsg($"客户端{sessionID}离线，离线时间：\t", LogLevel.Info);
         }
     }
 }

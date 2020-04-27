@@ -3,36 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ILNet.Mgr;
-using ILNet.Chat;
+using ILNet.Net;
+
 
 namespace Proto
 {
     [Serializable]
     public class GameMsg : NetMsg
     {
-        public string playerName;
+        public byte[] HeadData;//头像图片的数据
 
-        public string chatMsg;
+        public string PlayerName;
+
+        public SendChat Chatdata;//聊天消息的数据
 
     }
 
     [Serializable]
     public enum ERR {
-       None
+        None,
+       
     }
 
     [Serializable]
     public enum CMD
     {
-        HelloWorld,
-        Chat
+        None,
+        HeartBeat,
+        ReqLogin,
+        RspLogin,
     }
 
     public class SrvCfg
     {
         public const string srvIP = "127.0.0.1";
         public const int srvPort = 17666;
+    }
+
+    [Serializable]
+    public class SendChat
+    {
+        public string chat;
+        public int Islocal;
     }
 
 }

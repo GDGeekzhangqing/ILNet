@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ILNet.Mgr;
 using Proto;
-using ILNet.Chat;
+using ILNet.Net;
 using ILNet.Tools;
 using System.Threading;
 
@@ -13,8 +13,6 @@ namespace TestServer
 {
     class ServerApp
     {
-
-
         static void Main(string[] args)
         {
 

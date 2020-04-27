@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ILNet.Chat
+namespace ILNet.Net 
 {
-    public class NetAckMsg
+    public class AckMsg
     {
         /// <summary>
         /// 保存上一次心跳的时间
         /// </summary>
-        public long lastHeartTime;
+       public long lastHeartTime;
 
         /// <summary>
         /// 超时次数
@@ -40,6 +40,7 @@ namespace ILNet.Chat
         {
             if (Math.Abs(lastHeartTime - this.NowTimeSpan) > MaxLostTime)
             {
+
                 lastHeartTime = this.NowTimeSpan;
                 Lostcount++;
             }
@@ -56,13 +57,13 @@ namespace ILNet.Chat
         }
 
         /// <summary>
-        /// 初始化心跳包
+        /// 初始化心跳对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="maxlosttime"></param>
         /// <param name="maxlost"></param>
         /// <returns></returns>
-        public virtual T InitMax<T>(double maxlosttime = 2, int maxlost = 3) where T : NetAckMsg
+        public virtual T InitMax<T>(double maxlosttime = 2, int maxlost = 3) where T : AckMsg
         {
             MaxLostTime = maxlosttime;
             MaxLostcount = maxlost;
@@ -71,9 +72,8 @@ namespace ILNet.Chat
             return this as T;
         }
 
-
         /// <summary>
-        /// 初始化心跳包
+        /// 初始化心跳对象
         /// </summary>
         /// <param name="maxlosttime"></param>
         /// <param name="maxlost"></param>
@@ -84,8 +84,9 @@ namespace ILNet.Chat
             //第一次赋值肯定要刷新
             lastHeartTime = this.NowTimeSpan;
         }
-
     }
 
+
 }
+
 

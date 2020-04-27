@@ -1,11 +1,8 @@
 ﻿using System;
 using ILNet.Tools;
 
-namespace ILNet.Chat
+namespace ILNet.Net
 {
-  
-
-
     [Serializable]
     public abstract class NetMsg
     {
@@ -28,6 +25,8 @@ namespace ILNet.Chat
         /// 确认报文
         /// </summary>
         public int ack;
-
     }
+
 }
+
+

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ILNet.Chat
+namespace ILNet.Net
 {
    public class NetPkg
     {
@@ -12,14 +12,22 @@ namespace ILNet.Chat
         /// 包头长度
         /// </summary>
         public int headLen = 4;
+
         public byte[] headBuff = null;
+
+        /// <summary>
+        /// 记录分包时，接收到单个包的个数，判断还需接收多少个
+        /// </summary>
         public int headIndex = 0;
 
         /// <summary>
         /// 数据包长度
         /// </summary>
         public int bodyLen = 0;
+
         public byte[] bodyBuff = null;
+
+      
         public int bodyIndex = 0;
 
         public NetPkg()
@@ -36,6 +44,9 @@ namespace ILNet.Chat
             bodyBuff = new byte[bodyLen];
         }
 
+        /// <summary>
+        /// 重置包体数据
+        /// </summary>
         public void ResetData()
         {
             headIndex = 0;

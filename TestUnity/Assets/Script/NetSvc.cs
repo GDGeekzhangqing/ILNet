@@ -10,13 +10,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ILNet.Net;
 using ILNet.Tools;
-using ILNet.Mgr;
 using Proto;
-
-using ILNet.Chat;
-using KGSocket;
-using KGSocket.Tool;
 
 public class NetSvc : MonoBehaviour
 {
@@ -24,9 +20,9 @@ public class NetSvc : MonoBehaviour
 
     private static readonly string obj = "lock";
 
-    public IClientSession<ClientSession, GameMsg> session = null;
+    public IClientSession<ClientSession, GameMsg> session = new IClientSession<ClientSession, GameMsg>();
 
-    public AckMgr<ClientSession, NetAckMsg> ackMgr;
+    public AckMgr<ClientSession, AckMsg> ackMgr;
 
     private Queue<GameMsg> msgQue = new Queue<GameMsg>();
 
@@ -35,43 +31,17 @@ public class NetSvc : MonoBehaviour
     {
         Instance = this;
 
-        session = new IClientSession<ClientSession, GameMsg>();
         session.StartCreate(SrvCfg.srvIP, SrvCfg.srvPort);
-        // StartCoroutine(SendAckToServer());
+        SendAckToServer();
 
         //接收事件
         session.Client.OnReciveMsgEvent += AddNetPkg;
-
-
-        session.SetLog(true, (string msg, int lv) =>
-        {
-            switch (lv)
-            {
-                case 0:
-                    msg = "Log:" + msg;
-                    Debug.Log(msg);
-                    break;
-                case 1:
-                    msg = "Warn:" + msg;
-                    Debug.LogWarning(msg);
-                    break;
-                case 2:
-                    msg = "Error:" + msg;
-                    Debug.LogError(msg);
-                    break;
-                case 3:
-                    msg = "Info:" + msg;
-                    Debug.Log(msg);
-                    break;
-            }
-        });
 
 
     }
 
     private void Update()
     {
-        // SendAckToServer();
         if (msgQue.Count > 0)
         {
             lock (obj)
@@ -82,16 +52,13 @@ public class NetSvc : MonoBehaviour
         }
     }
 
-    public void LateUpdate()
-    {
 
-    }
 
     private void OnDestroy()
     {
         ackMgr.Dispose();
         session.Client.Clear();
-        NetLogger.LogMsg("清理连接");
+        Debug.Log("清理连接");
     }
 
 
@@ -100,12 +67,12 @@ public class NetSvc : MonoBehaviour
         if (session.Client != null)
         {
             session.Client.SendMsg(msg);
-            NetLogger.LogMsg("发送数据");
+            Debug.Log("发送数据");
         }
         else
         {
-            NetLogger.LogMsg("服务器未连接"); //这里可以写断线重连的逻辑
-            //InitSvc();
+            Debug.Log("服务器未连接"); //这里可以写断线重连的逻辑
+            InitSvc();
         }
     }
 
@@ -128,20 +95,20 @@ public class NetSvc : MonoBehaviour
             switch ((ERR)msg.err)
             {
                 case ERR.None:
-                    NetLogger.LogMsg("没有错误码");
+                    Debug.Log("没有错误码");
                     break;
             }
             return;
         }
         switch ((CMD)msg.cmd)
         {
-            case CMD.HelloWorld:
+            case CMD.HeartBeat:
                 //接收到心跳包 刷新
                 if (ackMgr != null)
                     ackMgr.UpdateOneHeat(session.Client);
                 break;
-            case CMD.Chat:
-                NetLogger.LogMsg($"接收到服务端消息：{msg.chatMsg}");
+            case CMD.RspLogin:
+                Debug.Log($"接收到服务端消息：{msg.Chatdata}");
                 break;
         }
     }
@@ -149,33 +116,50 @@ public class NetSvc : MonoBehaviour
 
     public void SendAckToServer()
     {
-        Debug.Log("客户端实例状态：" + session);
-        session.Client.OnConnectEvent += () =>
+
+        session.Client.OnStartConnectEvent += () =>
         {
-            ackMgr = new AckMgr<ClientSession, NetAckMsg>().InitTimerEvent(send =>
+            ackMgr = new AckMgr<ClientSession, AckMsg>().InitTimerEvent(send =>
              {
-                 session.Client.SendMsg(new GameMsg { cmd = (int)CMD.HelloWorld });
-                 NetLogger.LogMsg("8888");
+                 session.Client.SendMsg(new GameMsg { cmd = (int)CMD.HeartBeat });
+                 Debug.Log("8888");
              },
              obj =>
              {
-                 NetLogger.LogMsg("心跳包超时准备断开连接...");
-                 if (obj!=null)
+                 Debug.Log("心跳包超时准备断开连接...");
+                 if (obj != null)
                  {
-                    NetLogger.LogMsg($"心跳连接数：{ackMgr.ConnectDic[obj].Lostcount}");
+                     Debug.Log($"心跳连接数：{ackMgr.ConnectDic[obj].Lostcount}");
                      obj.Clear();
-                 }        
+                 }
 
              }).StartTimer();
 
-            ackMgr.AddConnectDic(session.Client, null, 5, 5);
+            ackMgr.AddConnectDic(session.Client, 5, 5);
         };
-
-        //接收事件
-        session.Client.OnReciveMsgEvent += AddNetPkg;
-
 
     }
 
+
+    #region Test
+    public void ClickSendBtn()
+    {
+        GameMsg msg = new GameMsg
+        {
+            cmd = (int)CMD.ReqLogin,
+            Chatdata = new SendChat
+            {
+                chat = "Hello world，Server！",
+                Islocal = 66,
+            }
+        };
+
+        SendMsg(msg);
+
+        Debug.Log("netSvc is:" + Instance);
+    }
+
+
+    #endregion
 
 }

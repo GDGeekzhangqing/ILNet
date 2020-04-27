@@ -66,14 +66,8 @@
     <Compile Include="Assets\Script\ClientSession.cs" />
     <Compile Include="Assets\Script\GameApp.cs" />
     <Compile Include="Assets\Script\NetSvc.cs" />
-    <None Include="Assets\DLL\DnsClient.xml" />
-    <None Include="Assets\DLL\MongoDB.Driver.Core.xml" />
     <None Include="Assets\DLL\Newtonsoft.Json.xml" />
-    <None Include="Assets\DLL\System.Buffers.xml" />
-    <None Include="Assets\DLL\MongoDB.Driver.xml" />
-    <None Include="Assets\DLL\Snappy.NET.xml" />
     <None Include="Assets\DLL\MongoDB.Bson.xml" />
-    <None Include="Assets\DLL\Crc32C.NET.xml" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/我的框架集/ILNet/TestUnity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -278,47 +272,17 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>C:/UnityVersionsPath/2019.3.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
-    <Reference Include="Crc32C.NET">
-      <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/Crc32C.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="DnsClient">
-      <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/DnsClient.dll</HintPath>
-    </Reference>
     <Reference Include="ILNet">
       <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/ILNet.dll</HintPath>
     </Reference>
-    <Reference Include="KGSocket">
-      <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/KGSocket.dll</HintPath>
-    </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/MongoDB.Bson.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver.Core">
-      <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/MongoDB.Driver.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/MongoDB.Driver.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Libmongocrypt">
-      <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/MongoDB.Libmongocrypt.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Proto">
       <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/Proto.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpCompress">
-      <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/SharpCompress.dll</HintPath>
-    </Reference>
-    <Reference Include="Snappy.NET">
-      <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/Snappy.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Buffers">
-      <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="Tool">
-      <HintPath>D:/我的框架集/ILNet/TestUnity/Assets/DLL/Tool.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/UnityVersionsPath/2019.3.3f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
